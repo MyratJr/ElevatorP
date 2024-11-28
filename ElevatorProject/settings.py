@@ -104,19 +104,19 @@ UNFOLD = {
                         "link": reverse_lazy("admin:auth_user_changelist"),
                     },
                     {
-                        "title": "Новости",
-                        "icon": "news",
-                        "link": reverse_lazy("admin:News_new_changelist"),
+                        "title": "Группы",
+                        "icon": "workspaces",
+                        "link": reverse_lazy("admin:Client_group_changelist"),
                     },
                     {
-                        "title": "Первые файлы",
-                        "icon": "attach_file",
-                        "link": reverse_lazy("admin:Services_firstfile_changelist"),
+                        "title": "Лифты",
+                        "icon": "elevator",
+                        "link": reverse_lazy("admin:Client_elevator_changelist"),
                     },
                     {
-                        "title": "Вторичные файлы",
-                        "icon": "attach_file",
-                        "link": reverse_lazy("admin:Services_secondfile_changelist"),
+                        "title": "Реклама",
+                        "icon": "featured_video",
+                        "link": reverse_lazy("admin:Client_advertisement_changelist"),
                     },
                 ]
             },

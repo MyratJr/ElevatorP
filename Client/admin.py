@@ -8,10 +8,10 @@ import unfold
 from django.utils import timezone
 
 
-class ElevatorAdmin(unfold.admin.StackedInline):
+class ElevatorAdmin(unfold.admin.TabularInline):
     model = Elevator
     readonly_fields = ["last_connection", "date_created"]
-
+    extra = 0
 
 @admin.register(Advertisement)
 class AdvertisementAdmin(ModelAdmin):
@@ -37,7 +37,7 @@ class AdvertisementAdmin(ModelAdmin):
 
 @admin.register(Group)
 class GroupAdmin(ModelAdmin):
-    # inlines = [ElevatorAdmin, AdvertisementAdmin]
+    inlines = [ElevatorAdmin]
     search_fields = ["name"]
 
 
