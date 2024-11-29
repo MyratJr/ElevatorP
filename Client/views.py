@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from rest_framework import mixins
+from .models import Advertisement
+from .serializers import AdvertisementSerializer
+from rest_framework.viewsets import GenericViewSet
 
-# Create your views here.
+
+class AdvertisementAPIView(mixins.ListModelMixin, GenericViewSet):
+    queryset = Advertisement.objects.all()
+    serializer_class = AdvertisementSerializer
