@@ -110,7 +110,7 @@ UNFOLD = {
                     },
                     {
                         "title": "Планшеты",
-                        "icon": "elevator",
+                        "icon": "tablet_android",
                         "link": reverse_lazy("admin:Client_elevator_changelist"),
                     },
                     {
