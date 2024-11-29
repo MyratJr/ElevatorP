@@ -109,7 +109,7 @@ UNFOLD = {
                         "link": reverse_lazy("admin:Client_group_changelist"),
                     },
                     {
-                        "title": "Лифты",
+                        "title": "Планшеты",
                         "icon": "elevator",
                         "link": reverse_lazy("admin:Client_elevator_changelist"),
                     },
