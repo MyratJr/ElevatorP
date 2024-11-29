@@ -12,4 +12,4 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 class ElevatorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Elevator
-        fields = '__all__'
+        fields = ["id", "name", ]

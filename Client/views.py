@@ -20,4 +20,4 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         serializer = ElevatorSerializer(elevator)
         elevator.last_connection = datetime.now()
         elevator.save()
-        return Response(serializer.data)
+        return Response("success")
