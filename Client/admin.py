@@ -1,11 +1,34 @@
 from django.contrib import admin
 from unfold.admin import ModelAdmin
-from .models import Advertisement, Group, Elevator
+from django.contrib.auth.models import Group as AuthGroup, User
+from .models import Advertisement, Elevator, Group
 from django.utils.safestring import mark_safe
+from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm, ActionForm
 import pathlib
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.html import format_html
 import unfold
 from django.utils import timezone
+
+
+admin.site.unregister(AuthGroup)
+
+
+admin.site.unregister(User)
+
+
+@admin.register(User)
+class UserAdmin(BaseUserAdmin, ModelAdmin):
+    form = UserChangeForm
+    add_form = UserCreationForm
+    change_password_form = AdminPasswordChangeForm
+    action_form = ActionForm
+    fieldsets = (
+        ("Важные данные", {'fields': ('username', 'password', "is_superuser", "is_active", "is_staff")}),
+        ('Важные даты', {'fields': ('last_login',"date_joined")}),
+    )
+    list_display = ["username"]
+    readonly_fields = ["last_login", "date_joined"]
 
 
 class ElevatorAdmin(unfold.admin.TabularInline):
