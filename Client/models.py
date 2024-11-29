@@ -35,7 +35,7 @@ class Elevator(models.Model):
 
     class Meta:
         verbose_name = "Лифт"
-        verbose_name = "Лифты"
+        verbose_name_plural = "Лифты"
 
 
 class Advertisement(models.Model):
