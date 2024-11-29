@@ -6,4 +6,4 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Advertisement
-        fields = "__all__"
+        fields = ["id", "title", "description", "media", "filetype", "duration"]
