@@ -75,8 +75,8 @@ REST_FRAMEWORK = {
 
 
 UNFOLD = {
-    "SITE_TITLE": "Centreg",
-    "SITE_HEADER": "Centreg",
+    "SITE_TITLE": "Advertisement",
+    "SITE_HEADER": "Advertisement",
     "SITE_URL": "/",
     "SITE_ICON": lambda request: static("unfold/images/centreg.png"),
     "SITE_LOGO": lambda request: static("unfold/images/centreg.png"),
