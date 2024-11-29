@@ -13,11 +13,9 @@ class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 class ElevatorViewSet(viewsets.ModelViewSet):
     queryset = Elevator.objects.all()
-    serializer_class = ElevatorSerializer
 
     def retrieve(self, request, pk=None):
         elevator = self.get_object()
-        serializer = ElevatorSerializer(elevator)
         elevator.last_connection = datetime.now()
         elevator.save()
         return Response("success")
