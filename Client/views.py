@@ -22,6 +22,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
     
 
 class AdvertisementByElevatorAPIView(generics.ListAPIView):
+    serializer_class = AdvertisementSerializer
 
     def get_queryset(self):
         elevator_id = self.kwargs['elevator_id']
