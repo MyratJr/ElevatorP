@@ -60,3 +60,4 @@ class Advertisement(models.Model):
     class Meta:
         verbose_name = "Реклама"
         verbose_name_plural = "Реклама"
+        ordering = ["-ordering"]
