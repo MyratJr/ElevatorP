@@ -42,6 +42,7 @@ class Advertisement(models.Model):
     parent = models.ForeignKey(Group, on_delete=models.SET_NULL, related_name="advertisements", blank=True, null=True, verbose_name="Связанная группа")
     title = models.CharField(max_length=555, verbose_name="Заголовок")
     description = models.TextField(verbose_name="Описание")
+    ordering = models.IntegerField(default=0)
     media = models.FileField(upload_to="admin_A", verbose_name="Реклама")
     filetype = models.CharField(verbose_name="Тип файла:", max_length=50, blank=True)
     duration = models.IntegerField(verbose_name="Продолжительность в секундах:", default=0)
