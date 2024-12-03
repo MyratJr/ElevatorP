@@ -91,11 +91,11 @@ class ElevatorAdmin(ModelAdmin):
         green = int(255 * (1 - percentage))
         color = f'rgb({red}, {green}, 0)'
 
-        if hours == 0 and minutes <= 5:
-            return format_html(
-                '<strong style="color: {};">Все в порядке</strong>',
-                color
-            )
+        # if hours == 0 and minutes <= 5:
+        #     return format_html(
+        #         '<strong style="color: {};">Все в порядке</strong>',
+        #         color
+        #     )
         return format_html(
             '<strong style="color: {};">Нет связи уже {} часов {} минут.</strong>',
             color, hours, minutes
