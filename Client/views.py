@@ -9,6 +9,7 @@ class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Advertisement.objects.all()
     for i in Elevator.objects.all():
         i.last_connection = datetime.now()
+        print(i.last_connection)
         i.save()
     serializer_class = AdvertisementSerializer
 
