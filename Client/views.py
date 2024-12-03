@@ -7,6 +7,9 @@ from datetime import datetime
 
 class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Advertisement.objects.all()
+    for i in Elevator.objects.all():
+        i.last_connection = datetime.now()
+        i.save()
     serializer_class = AdvertisementSerializer
 
 
