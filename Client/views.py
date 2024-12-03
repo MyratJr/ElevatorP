@@ -10,13 +10,10 @@ class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = AdvertisementSerializer
 
 
-    def update_last_connection(self, request):
-        for advertisement in self.get_queryset():
-            advertisement.last_connection = timezone.now()
-            print(i.last_connection)
-            advertisement.save()
-
-        return Response(status=status.HTTP_200_OK)
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        print("salam")
+        return queryset
 
 
 class AdvertisementByElevatorAPIView(generics.ListAPIView):
