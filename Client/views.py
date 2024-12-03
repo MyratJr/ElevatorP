@@ -3,6 +3,7 @@ from .models import Advertisement, Elevator
 from .serializers import AdvertisementSerializer
 from rest_framework import viewsets, generics
 from datetime import datetime
+from django.utils import timezone
 
 
 class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
