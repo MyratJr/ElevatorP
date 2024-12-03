@@ -86,24 +86,36 @@ class ElevatorAdmin(ModelAdmin):
 
             hours = int(minutes / 60)
             minutes = minutes % 60
+
+            # Calculate red and green values based on time delta
+            red_intensity = max(0, 1 - (percentage / 0.5))  # Red decreases from 1 to 0
+            green_intensity = min(1, percentage / 0.5)      # Green increases from 0 to 1
+
+            red = int(255 * red_intensity)
+            green = int(255 * green_intensity)
+            color = f'rgb({red}, {green}, 0)'
+
+            # Handle different time scenarios with clear and concise formatting
+            if hours == 0 and minutes <= 5 and seconds <= 5:
+                return format_html(
+                    '<strong style="color: {};">Был онлайн 5 секунд назад.</strong>',
+                    color
+                )
+            else:
+                return format_html(
+                    '<strong style="color: {};">Нет связи уже {} часов {} минут {} секунд.</strong>',
+                    color, hours, minutes, seconds
+                )
         else:
             minutes = 0
             seconds = 0
+            red = 255  # Fully red for no connection
+            green = 0
+            color = f'rgb({red}, {green}, 0)'
 
-        red = int(125 * percentage)
-        green = int(125 * (0 - percentage))
-        color = f'rgb({red}, {green}, 0)'
-
-        # Handle different time scenarios with clear and concise formatting
-        if hours == 0 and minutes == 0 and seconds <= 5:
             return format_html(
-                '<strong style="color: {};">Был онлайн 5 секунд назад.</strong>',
+                '<strong style="color: {};">Нет информации о подключении.</strong>',
                 color
-            )
-        else:
-            return format_html(
-                '<strong style="color: {};">Нет связи уже {} часов {} минут {} секунд.</strong>',
-                color, hours, minutes, seconds
             )
 
     time_status.short_description = 'Статус соединения'
