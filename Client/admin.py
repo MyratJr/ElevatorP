@@ -68,7 +68,7 @@ class GroupAdmin(ModelAdmin):
 class ElevatorAdmin(ModelAdmin):
     list_display = ('name', "colored_status_counter", "time_status")
     ordering = ["last_connection"]
-    readonly_fields = ["last_connection", "date_created"]
+    readonly_fields = ["date_created"]
     search_fields = ["parent__name", "name"]
 
     def time_status(self, obj):
