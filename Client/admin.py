@@ -73,33 +73,38 @@ class ElevatorAdmin(ModelAdmin):
 
     def time_status(self, obj):
         now = timezone.now()
-        max_value = 60
-        percentage = 0
+        max_value = 60  # Maximum time in minutes
+
         if obj.last_connection:
             time_diff = now - obj.last_connection
-            minutes = int(time_diff.total_seconds() / 60)
-            hours = 0
-            percentage = min(minutes / max_value, 1)
+            total_seconds = int(time_diff.total_seconds())
+            minutes = int(total_seconds / 60)
+            seconds = total_seconds % 60  # Extract remaining seconds
 
-            if minutes > 60:
-                hours = int(minutes / 60)
-                minutes = minutes % 60
+            # Calculate percentage with consideration for seconds
+            percentage = min((minutes * 60 + seconds) / (max_value * 60), 1)
+
+            hours = int(minutes / 60)
+            minutes = minutes % 60
         else:
             minutes = 0
-        
+            seconds = 0
+
         red = int(255 * percentage)
         green = int(255 * (1 - percentage))
         color = f'rgb({red}, {green}, 0)'
 
-        if hours == 0 and minutes <= 5:
+        # Handle different time scenarios with clear and concise formatting
+        if hours == 0 and minutes <= 5 and seconds <= 5:
             return format_html(
                 '<strong style="color: {};">Был онлайн 5 секунд назад.</strong>',
                 color
             )
-        return format_html(
-            '<strong style="color: {};">Нет связи уже {} часов {} минут.</strong>',
-            color, hours, minutes
-        )
+        else:
+            return format_html(
+                '<strong style="color: {};">Нет связи уже {} часов {} минут {} секунд.</strong>',
+                color, hours, minutes, seconds
+            )
 
     time_status.short_description = 'Статус соединения'
    
