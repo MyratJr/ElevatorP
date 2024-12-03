@@ -7,11 +7,15 @@ from datetime import datetime
 
 class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Advertisement.objects.all()
-    for i in Elevator.objects.all():
-        i.last_connection = datetime.now()
-        print(i.last_connection)
-        i.save()
     serializer_class = AdvertisementSerializer
+
+
+    def update_last_connection(self, request):
+        for advertisement in self.get_queryset():
+            advertisement.last_connection = timezone.now()
+            advertisement.save()
+
+        return Response(status=status.HTTP_200_OK)
 
 
 class AdvertisementByElevatorAPIView(generics.ListAPIView):
