@@ -73,7 +73,7 @@ class ElevatorAdmin(ModelAdmin):
 
     def time_status(self, obj):
         now = timezone.now()
-        max_value = 60  # Maximum time in minutes
+        max_value = 30  # Maximum time in minutes
 
         if obj.last_connection:
             time_diff = now - obj.last_connection
@@ -82,7 +82,7 @@ class ElevatorAdmin(ModelAdmin):
             seconds = total_seconds % 60  # Extract remaining seconds
 
             # Calculate percentage with consideration for seconds
-            percentage = min((minutes * 60 + seconds) / (max_value * 60), 3)
+            percentage = min((minutes * 60 + seconds) / (max_value * 60), 1)
 
             hours = int(minutes / 60)
             minutes = minutes % 60
