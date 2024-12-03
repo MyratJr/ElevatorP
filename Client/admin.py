@@ -82,7 +82,7 @@ class ElevatorAdmin(ModelAdmin):
             seconds = total_seconds % 60  # Extract remaining seconds
 
             # Calculate percentage with consideration for seconds
-            percentage = min((minutes * 60 + seconds) / (max_value * 60), 2)
+            percentage = min((minutes * 60 + seconds) / (max_value * 60), 3)
 
             hours = int(minutes / 60)
             minutes = minutes % 60
