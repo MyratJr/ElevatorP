@@ -112,11 +112,13 @@ class ElevatorAdmin(ModelAdmin):
         now = timezone.now()
         if obj.last_connection:
             time_diff = now - obj.last_connection
-            minutes = int(time_diff.total_seconds() / 60)
+            total_seconds = int(time_diff.total_seconds())
+            minutes = int(total_seconds / 60)
+            seconds = total_seconds % 60  # Extract remaining seconds
         else:
             minutes = 0
-        max_value = 60
-        percentage = min(minutes / max_value, 1)
+        max_value = 30
+        percentage = min((minutes * 60 + seconds) / (max_value * 60), 1)
         
         red = int(255 * percentage)
         green = int(255 * (1 - percentage))
