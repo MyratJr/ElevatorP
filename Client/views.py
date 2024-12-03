@@ -12,7 +12,9 @@ class AdvertisementAPIView(mixins.ListModelMixin, viewsets.GenericViewSet):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        print("salam")
+        for advertisement in self.get_queryset():
+            advertisement.last_connection = timezone.now()
+            advertisement.save()
         return queryset
 
 
