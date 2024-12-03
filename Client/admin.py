@@ -91,7 +91,7 @@ class ElevatorAdmin(ModelAdmin):
             seconds = 0
 
         red = int(125 * percentage)
-        green = int(125 * (2 - percentage))
+        green = int(125 * (0 - percentage))
         color = f'rgb({red}, {green}, 0)'
 
         # Handle different time scenarios with clear and concise formatting
