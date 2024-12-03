@@ -95,7 +95,7 @@ class ElevatorAdmin(ModelAdmin):
         color = f'rgb({red}, {green}, 0)'
 
         # Handle different time scenarios with clear and concise formatting
-        if hours == 0 and minutes <= 5 and seconds <= 5:
+        if hours == 0 and minutes == 0 and seconds <= 5:
             return format_html(
                 '<strong style="color: {};">Был онлайн 5 секунд назад.</strong>',
                 color
