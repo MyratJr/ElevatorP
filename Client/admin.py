@@ -94,7 +94,6 @@ class ElevatorAdmin(ModelAdmin):
         green = int(255 * (1 - percentage))
         color = f'rgb({red}, {green}, 0)'
 
-        # Handle different time scenarios with clear and concise formatting
         if hours == 0 and minutes == 0 and seconds <= 5:
             return format_html(
                 '<strong style="color: {};">Был онлайн 5 секунд назад.</strong>',
@@ -114,7 +113,7 @@ class ElevatorAdmin(ModelAdmin):
             time_diff = now - obj.last_connection
             total_seconds = int(time_diff.total_seconds())
             minutes = int(total_seconds / 60)
-            seconds = total_seconds % 60  # Extract remaining seconds
+            seconds = total_seconds % 60
         else:
             minutes = 0
         max_value = 30

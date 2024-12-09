@@ -46,12 +46,21 @@ class Advertisement(models.Model):
     media = models.FileField(upload_to="admin_A", verbose_name="Реклама")
     filetype = models.CharField(verbose_name="Тип файла:", max_length=50, blank=True)
     duration = models.IntegerField(verbose_name="Продолжительность в секундах:", default=0)
+    original_duration = models.IntegerField(verbose_name="Исходная продолжительность в секундах:", default=0)
+    size = models.DecimalField(
+        max_digits=10,  # Total number of digits
+        decimal_places=2,  # Digits after the decimal point
+        help_text="Size of the video in megabytes (MB)", 
+        default=1
+    )
     date_created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def save(self, *args, **kwargs):
         if self.media:
             mime_type, _ = mimetypes.guess_type(self.media.name)
             self.filetype = mime_type or 'unknown'
+        if self.media and not self.size:
+            self.size = round(self.media.size / (1024 * 1024), 2)
         super().save(*args, **kwargs)
 
     def __str__(self):
