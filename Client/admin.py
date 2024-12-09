@@ -47,7 +47,7 @@ class AdvertisementAdmin(ModelAdmin):
                 return mark_safe('<video style="height:300px;margin: 0 auto;" controls loop><source src="%s" type="video/mp4"> </video>' % obj.media.url)
         return "Медиафайлы не могут быть видны."
     image_preview.short_description = "Предварительный просмотр медиа:"
-    readonly_fields = ('image_preview',"date_created")
+    readonly_fields = ('image_preview',"date_created", "original_duration", "size")
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)

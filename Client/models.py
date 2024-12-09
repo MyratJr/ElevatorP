@@ -50,7 +50,7 @@ class Advertisement(models.Model):
     size = models.DecimalField(
         max_digits=10,  # Total number of digits
         decimal_places=2,  # Digits after the decimal point
-        help_text="Size of the video in megabytes (MB)", 
+        help_text="Размер видео в мегабайтах (МБ)", 
         default=1
     )
     date_created = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
